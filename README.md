@@ -4,21 +4,23 @@
 
 ```bash
 # Start project
-uv init --package deep-research-agent
-cd deep-research-agent/
+git clone https://github.com/AbeTavarez/Deep-Research-Agent.git
+cd Deep-Research-Agent/
+
+uv sync
+
 source .venv/Scripts/activate # Windows
 source .venv/bin/activate # Mac/Linux
-uv add deepagents python-dotenv
 
-# Add your provider
-uv add langchain-openai
+cp .env.example .env
+#! -> Add your API keys to your .env file <-
+
+# Choose your provider!
+# I'm using OpenAI, if you want to use the same provider just add your API key. 
+# -> If you want to use a different provider or a FREE:
 # See full list of providers:
 # https://docs.langchain.com/oss/python/integrations/providers/all_providers
 
 # Run Agent
-uv run agent.py
-
-# Adding Tracing and Studio
-uv add "langgraph-cli[inmem]"
 langgraph dev
 ```
