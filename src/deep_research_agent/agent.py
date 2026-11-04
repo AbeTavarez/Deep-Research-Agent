@@ -10,10 +10,11 @@ from deep_research_agent.tools import web_search
 load_dotenv()
 
 
-async def main():
-    # (LLM) Large Language Model
+async def build_agent():
+    # (LLM) Large Language Model ---
     model = "openai:gpt-5.5"
     
+    # MCP ---
     mcp_client = MultiServerMCPClient({
         "fire_crawler": {
             "transport": "http",
@@ -29,17 +30,11 @@ async def main():
         print(f"Name: {tool.name}")
         print(f"\ndescription: {tool.description}")
 
-    agent = create_deep_agent(
+    return create_deep_agent(
             model=model, 
             system_prompt=SYSTEM_PROMPT,
             tools=[web_search, *mcp_tools]
         )
-
-    response = agent.invoke(
-        {"messages": [{"role": "user", "content": "What's a micro controller?"}]}
-    )
-
-    print(response)
 
 if __name__ == "__main__":
     asyncio.run(main())
