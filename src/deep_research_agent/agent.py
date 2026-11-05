@@ -2,7 +2,6 @@ from deepagents import create_deep_agent
 from langchain_mcp_adapters.client import MultiServerMCPClient
 
 from dotenv import load_dotenv
-import asyncio
 
 from deep_research_agent.prompts import SYSTEM_PROMPT
 from deep_research_agent.tools import web_search
@@ -35,6 +34,3 @@ async def build_agent():
             system_prompt=SYSTEM_PROMPT,
             tools=[web_search, *mcp_tools]
         )
-
-if __name__ == "__main__":
-    asyncio.run(main())
